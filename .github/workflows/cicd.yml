@@ -40,4 +40,4 @@ jobs:
         run: docker rm -f my-app-container
       
       - name: Run Docker Container
-        run: docker run -d -p 3000:3000 --name my-app-container medoz9/my-app
+        run: docker run -d -p 3000:80 --name my-app-container medoz9/my-app
