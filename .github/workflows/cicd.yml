@@ -17,7 +17,7 @@ jobs:
       
       - name: Build Docker Image
         run: |
-          docker build -t MedHachami/my-app \
+          docker build -t medoz9/my-app \
             --build-arg VITE_apiKey=${{ secrets.VITE_API_KEY }} \
             --build-arg VITE_authDomain=${{ secrets.VITE_AUTH_DOMAIN }} \
             --build-arg VITE_projectId=${{ secrets.VITE_PROJECT_ID }} \
@@ -27,17 +27,17 @@ jobs:
             .
       
       - name: Publish Image to Docker Hub
-        run: docker push MedHachami/my-app:latest
+        run: docker push medoz9/my-app:latest
  
   deploy:
     needs: build
     runs-on: self-hosted 
     steps:
       - name: Pull Image from Docker Hub
-        run: docker pull MedHachami/my-app:latest 
+        run: docker pull medoz9/my-app:latest 
       
       - name: Delete Old Container
         run: docker rm -f my-app-container
       
       - name: Run Docker Container
-        run: docker run -d -p 3000:3000 --name my-app-container MedHachami/my-app
+        run: docker run -d -p 3000:3000 --name my-app-container medoz9/my-app
